@@ -16,6 +16,7 @@ module.exports = async ({ github, context, exec }) => {
   const repo = context.repo.repo;
 
   await exec.exec(`pwd`);
+  await exec.exec(`ls -al`);
 
   await exec.exec(
     `gh pr create --head "${head}" --base "${base}" --title "${title}" --body "${body}" --label "ci"`
