@@ -30,5 +30,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           script: |
-            const pr_create_script = require('${{ env.GITHUB_SCRIPT_PATH }}/pkg/pr/create.js');
-            pr_create_script({github, context});
+            const head = "${{ inputs.head }}";
+            const base = "${{ inputs.base }}";
+            const title = context.payload.head_commit.message;
+            const body = "Created by DevOps bot.";
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            const exec = require("@actions/exec");
+            await exec.exec(
+              `gh pr create --head ${head} --base ${base} --title ${title} --body ${body} --owner ${owner} --repo ${repo}`
+            );
+            // const pr_create_script = require('${{ env.GITHUB_SCRIPT_PATH }}/pkg/pr/create.js');
+            // pr_create_script({github, context});
