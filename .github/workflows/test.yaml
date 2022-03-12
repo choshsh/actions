@@ -19,9 +19,6 @@ jobs:
   pr_comment:
     if: ${{ github.event.issue.pull_request }}
     uses: choshsh/actions/.github/workflows/pr_comment.yaml@master
-    with:
-      head: dev
-      base: master
 
   test_env:
     if: >
