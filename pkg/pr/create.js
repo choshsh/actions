@@ -1,4 +1,4 @@
-module.exports = ({ github, context }) => {
+module.exports = async ({ github, context }) => {
   // github.rest.pulls.create({
   //   title: context.payload.head_commit.message,
   //   owner: context.repo.owner,
