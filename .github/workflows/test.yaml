@@ -8,7 +8,7 @@ on:
 
 jobs:
   pr_create:
-    if: ${{ github.event_name == 'push' && github.ref_name == 'dev' }}
+    if: ${{ github.event_name == 'push' && github.ref_name == 'dev' && github.event.action != 'unassigned'}}
     uses: choshsh/actions/.github/workflows/pr_create.yaml@dev
     with:
       head: dev
@@ -16,8 +16,8 @@ jobs:
 
   pr_comment:
     if: ${{ github.event.issue.pull_request }}
-    uses: choshsh/actions/.github/workflows/pr_comment.yaml@master
+    uses: choshsh/actions/.github/workflows/pr_comment.yaml@dev
 
   test_env:
-    if: ${{ github.event_name == 'push' && github.ref_name == 'test' }}
-    uses: choshsh/actions/.github/workflows/test_env.yaml@master
+    if: ${{ github.event_name == 'push' && github.ref_name == 'test' && github.event.action != 'unassigned'}}
+    uses: choshsh/actions/.github/workflows/test_env.yaml@dev
