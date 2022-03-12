@@ -1,0 +1,31 @@
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  workflow_call_by_comment:
+    name: Macro with comment(PR)
+    if: ${{ github.event.issue.pull_request }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: macro
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const comment_script = require('./pkg/comment/get.js')
+            const comment = comment_script({github, context})
+
+            console.log(comment)
+
+            # switch(comment.body) {
+            #   case '/approve':
+            #     github.rest.pulls.merge({
+            #       owner: context.repo.owner,
+            #       repo: context.repo.repo,
+            #       pull_number: context.payload.issue.number,
+            #     });
+            #     break;
+            #   default:
+            #     console.log('Command is not matched.');
+            #     process.exit(1);
+            # }
