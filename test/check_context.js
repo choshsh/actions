@@ -4,11 +4,11 @@ module.exports = ({ github, context, core }) => {
   console.log("context");
   console.log(context);
 
+  console.log("context.repo");
+  console.log(context.repo);
+
   console.log("github");
   console.log(github);
-
-  console.log("github.repo");
-  console.log(github.repo);
 
   console.log("core");
   console.log(core);
