@@ -30,6 +30,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           script: |
+            console.log(context.payload)
             const head = "${{ inputs.head }}";
             const base = "${{ inputs.base }}";
             const title = context.payload.head_commit.message;
