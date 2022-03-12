@@ -7,6 +7,7 @@ module.exports = async ({ github, context }) => {
   //   base: "${{ inputs.base }}",
   //   body: "Created by DevOps bot.",
   // });
+  console.log(`\n${context.payload}\n`);
   const head = "${{ inputs.head }}";
   const base = "${{ inputs.base }}";
   const title = context.payload.head_commit.message;
@@ -14,8 +15,7 @@ module.exports = async ({ github, context }) => {
   const owner = context.repo.owner;
   const repo = context.repo.repo;
 
-  const exec = require("@actions/exec");
   await exec.exec(
-    `gh pr create --head ${head} --base ${base} --title ${title} --body ${body} --owner ${owner} --repo ${repo}`
+    `gh pr create --head "${head}" --base "${base}" --title "${title}" --body "${body}" --label "ci"`
   );
 };
