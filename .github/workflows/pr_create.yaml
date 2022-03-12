@@ -17,11 +17,12 @@ jobs:
     env:
       GITHUB_SCRIPT_PATH: ".devops"
     steps:
+      - uses: actions/checkout@v3
       - name: Fetch CI/CD script
         uses: actions/checkout@v3
         with:
           repository: choshsh/actions
-          ref: master
+          ref: dev
           path: ${{ env.GITHUB_SCRIPT_PATH }}
 
       - name: Create PR
@@ -31,4 +32,9 @@ jobs:
         with:
           script: |
             const pr_create_script = require('${{ env.GITHUB_SCRIPT_PATH }}/pkg/pr/create.js');
-            pr_create_script({github, context});
+            const inputs = {
+              head : "${{ inputs.head }}",
+              base : "${{ inputs.base }}"
+             
+            };
+            pr_create_script({github, context, exec, inputs});
