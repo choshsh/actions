@@ -16,12 +16,12 @@ jobs:
           ref: master
           path: ${{ env.GITHUB_SCRIPT_PATH }}
 
-      - name: macro
+      - name: Macro
         uses: actions/github-script@v6
         with:
           script: |
-            const comment_script = require('${{ env.GITHUB_SCRIPT_PATH }}/pkg/comment/get.js')
-            const comment = await comment_script({github, context})
+            const comment_script = require('${{ env.GITHUB_SCRIPT_PATH }}/pkg/comment/get.js');
+            const comment = await comment_script({github, context});
 
-            console.log(context)
-            console.log(comment)
+            const macro_script = require('${{ env.GITHUB_SCRIPT_PATH }}/pkg/comment/macro.js');
+            macro_script({github, context, comment});
