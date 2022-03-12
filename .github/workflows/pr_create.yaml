@@ -1,0 +1,32 @@
+name: Create pull request
+
+on:
+  workflow_call:
+    inputs:
+      head: # From
+        required: true
+        type: string
+      base: # To
+        required: true
+        type: string
+
+jobs:
+  workflow_call_pr:
+    name: Create pull request
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_SCRIPT_PATH: ".devops"
+    steps:
+      - name: Fetch CI/CD script
+        uses: actions/checkout@v3
+        with:
+          repository: choshsh/actions
+          ref: master
+          path: ${{ env.GITHUB_SCRIPT_PATH }}
+
+      - name: Create PR
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const pr_create_script = require('${{ env.GITHUB_SCRIPT_PATH }}/pkg/pr/create.js');
+            pr_create_script({github, context});

@@ -1,8 +1,10 @@
 module.exports = ({ github, context }) => {
-  github.rest.pulls.merge({
+  github.rest.pulls.create({
+    title: context.payload.head_commit.message,
     owner: context.repo.owner,
     repo: context.repo.repo,
-    pull_number: context.payload.issue.number,
+    head: "${{ inputs.head }}",
+    base: "${{ inputs.base }}",
+    body: "Created by DevOps bot.",
   });
-  core.exportVariable("author", commit.data.commit.author.email);
 };
