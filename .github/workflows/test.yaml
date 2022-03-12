@@ -2,7 +2,7 @@ name: Test environment
 
 on:
   push:
-    paths: ["./test/*.js"]
+    paths: ["test/**"]
 
 jobs:
   test:
