@@ -27,4 +27,4 @@ jobs:
     if: >
       ${{ github.event_name == 'push' }} && 
       ${{ github.ref_name == 'test' }}
-    uses: choshsh/actions/.github/workflows/test.yaml@master
+    uses: choshsh/actions/.github/workflows/test.yaml@dev
