@@ -7,7 +7,7 @@ module.exports = async ({ github, context, exec }) => {
   //   base: "${{ inputs.base }}",
   //   body: "Created by DevOps bot.",
   // });
-  console.log(`\n${context.payload}\n`);
+  console.log(context);
   const head = "${{ inputs.head }}";
   const base = "${{ inputs.base }}";
   const title = context.payload.head_commit.message;
