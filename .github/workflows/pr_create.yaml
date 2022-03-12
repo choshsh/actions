@@ -35,6 +35,5 @@ jobs:
             const inputs = {
               head : "${{ inputs.head }}",
               base : "${{ inputs.base }}"
-             
             };
             pr_create_script({github, context, exec, inputs});
