@@ -1,9 +1,8 @@
 module.exports = async ({ github, context, comment }) => {
-  console.log(`Input comment : ${comment.body}`);
-  console.log(`Issue number : ${context.payload.issue.number}`);
-
   switch (comment.body) {
     case "/approve":
+      console.log(`Input comment : ${comment.body}`);
+      console.log(`PR number : ${context.payload.issue.number}`);
       await github.rest.pulls.merge({
         owner: context.repo.owner,
         repo: context.repo.repo,
