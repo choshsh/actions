@@ -8,10 +8,9 @@ module.exports = async ({ github, context, exec, inputs }) => {
   //   body: "Created by DevOps bot.",
   // });
   console.log(context);
-  console.log(inputs.head);
-  console.log(inputs.head());
-  const head = "${{ inputs.head }}";
-  const base = "${{ inputs.base }}";
+  console.log(inputs);
+  const head = inputs.head;
+  const base = inputs.base;
   const title = context.payload.head_commit.message;
   const body = "Created by DevOps bot.";
   const owner = context.repo.owner;
