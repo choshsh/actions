@@ -8,9 +8,7 @@ on:
 
 jobs:
   pr_create:
-    if: >
-      ${{ github.event_name == 'push' }} && 
-      ${{ github.ref_name == 'dev' }}
+    if: ${{ github.event_name == 'push' && github.ref_name == 'dev' }}
     uses: choshsh/actions/.github/workflows/pr_create.yaml@dev
     with:
       head: dev
@@ -21,7 +19,5 @@ jobs:
     uses: choshsh/actions/.github/workflows/pr_comment.yaml@master
 
   test_env:
-    if: >
-      ${{ github.event_name == 'push' }} && 
-      ${{ github.ref_name == 'test' }}
+    if: ${{ github.event_name == 'push' && github.ref_name == 'test' }}
     uses: choshsh/actions/.github/workflows/test_env.yaml@master
