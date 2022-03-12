@@ -3,7 +3,7 @@ name: Comment macro
 on: workflow_call
 
 jobs:
-  workflow_call_by_comment:
+  workflow_call_comment:
     name: Macro with comment(PR)
     runs-on: ubuntu-latest
     env:

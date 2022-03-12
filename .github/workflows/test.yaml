@@ -2,15 +2,26 @@ name: Test workflow call
 
 on:
   push:
-    paths: ["test/**"]
+    branches: [dev, test]
   issue_comment:
     types: [created]
 
 jobs:
-  test:
-    if: ${{ github.event_name == 'push' }}
-    uses: choshsh/actions/.github/workflows/test_env.yaml@master
+  pr_create:
+    if: >
+      ${{ github.event_name == 'push' }} && 
+      ${{ github.ref_name == 'dev' }}
+    uses: choshsh/actions/.github/workflows/pr_create.yaml@dev
+    with:
+      head: dev
+      base: master
 
-  pr_comment_macro:
+  pr_comment:
     if: ${{ github.event.issue.pull_request }}
     uses: choshsh/actions/.github/workflows/pr_comment.yaml@master
+
+  test_env:
+    if: >
+      ${{ github.event_name == 'push' }} && 
+      ${{ github.ref_name == 'test' }}
+    uses: choshsh/actions/.github/workflows/test_env.yaml@master
