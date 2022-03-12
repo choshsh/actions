@@ -1,6 +1,7 @@
 module.exports = async ({ github, context, comment }) => {
   console.log(`Input Comment : ${comment.body}`);
   console.log(comment);
+  console.log(context.payload.issue.number);
 
   switch (comment.body) {
     case "/approve":
