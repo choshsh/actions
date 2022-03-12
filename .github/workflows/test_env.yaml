@@ -1,10 +1,9 @@
-name: Comment macro
+name: Test environment
 
 on: workflow_call
 
 jobs:
-  workflow_call_by_comment:
-    name: Macro with comment(PR)
+  test:
     runs-on: ubuntu-latest
     env:
       GITHUB_SCRIPT_PATH: ".devops"
@@ -16,12 +15,9 @@ jobs:
           ref: master
           path: ${{ env.GITHUB_SCRIPT_PATH }}
 
-      - name: macro
+      - name: Print env & context
         uses: actions/github-script@v6
         with:
           script: |
-            const comment_script = require('${{ env.GITHUB_SCRIPT_PATH }}/pkg/comment/get.js')
-            const comment = await comment_script({github, context})
-
-            console.log(context)
-            console.log(comment)
+            const script = require('${{ env.GITHUB_SCRIPT_PATH }}/test/check_context.js')
+            script({github, context})

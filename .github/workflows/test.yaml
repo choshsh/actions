@@ -1,18 +1,19 @@
-name: Test environment
+name: Test workflow call
 
 on:
   push:
     paths: ["test/**"]
+  issue_comment:
+    types: [created]
 
 jobs:
   test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
+    if: ${{ github.event_name == 'push' }}
+    uses: choshsh/actions/.github/workflows/create_pr.yaml@master
 
-      - name: Print env & context
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const script = require('./test/check_context.js')
-            script({github, context})
+  comment:
+    if: ${{ github.event.issue.pull_request }}
+    uses: choshsh/actions/.github/workflows/pr_comment.yaml@master
+    with:
+      head: dev
+      base: master
