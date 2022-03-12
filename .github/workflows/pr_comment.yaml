@@ -10,11 +10,13 @@ jobs:
     env:
       GITHUB_SCRIPT_PATH: ".devops"
     steps:
-      - uses: actions/checkout@v3
+      - name: Fetch CI/CD script
+        uses: actions/checkout@v3
         with:
           repository: choshsh/actions
           ref: master
           path: ${{ env.GITHUB_SCRIPT_PATH }}
+
       - name: macro
         uses: actions/github-script@v6
         with:
