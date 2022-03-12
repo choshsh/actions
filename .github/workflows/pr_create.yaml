@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: choshsh/actions
-          ref: master
+          ref: dev
           path: ${{ env.GITHUB_SCRIPT_PATH }}
 
       - name: Create PR
