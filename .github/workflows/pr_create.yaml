@@ -32,4 +32,5 @@ jobs:
         with:
           script: |
             const pr_create_script = require('${{ env.GITHUB_SCRIPT_PATH }}/pkg/pr/create.js');
-            pr_create_script({github, context, exec});
+            const inputs = ${{ inputs }};
+            pr_create_script({github, context, exec, inputs});
