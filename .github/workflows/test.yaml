@@ -11,6 +11,6 @@ jobs:
     if: ${{ github.event_name == 'push' }}
     uses: choshsh/actions/.github/workflows/test_env.yaml@master
 
-  comment:
+  pr_comment_macro:
     if: ${{ github.event.issue.pull_request }}
     uses: choshsh/actions/.github/workflows/pr_comment.yaml@master
