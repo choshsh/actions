@@ -1,7 +1,6 @@
 module.exports = async ({ github, context, comment }) => {
-  console.log(`Input Comment : ${comment.body}`);
-  console.log(comment);
-  console.log(context.payload.issue.number);
+  console.log(`Input comment : ${comment.body}`);
+  console.log(`Issue number : ${context.payload.issue.number}`);
 
   switch (comment.body) {
     case "/approve":
@@ -12,7 +11,7 @@ module.exports = async ({ github, context, comment }) => {
       });
       break;
     default:
-      console.log("Command is not matched.");
+      console.error("Command is not matched.");
       process.exit(1);
   }
 };
