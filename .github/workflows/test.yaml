@@ -9,7 +9,7 @@ on:
 jobs:
   test:
     if: ${{ github.event_name == 'push' }}
-    uses: choshsh/actions/.github/workflows/create_pr.yaml@master
+    uses: choshsh/actions/.github/workflows/test_env.yaml@master
 
   comment:
     if: ${{ github.event.issue.pull_request }}
