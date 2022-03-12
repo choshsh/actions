@@ -16,7 +16,7 @@ jobs:
           ref: master
           path: ${{ env.GITHUB_SCRIPT_PATH }}
 
-      - name: macro
+      - name: Macro
         uses: actions/github-script@v6
         with:
           script: |
