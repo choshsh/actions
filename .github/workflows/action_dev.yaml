@@ -10,6 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: choshsh/action-config-env@v0.0.1
+      - uses: choshsh/action-config-env@v0.0.2
         with:
           who-to-greet: choshsh
+
+      - name: test
+        run: env
