@@ -20,4 +20,4 @@ jobs:
           branch-prod: master
 
       - name: test
-        run: echo ${{ steps.deploy_env.outputs.deploy_stage }}'
+        run: echo ${{ steps.deploy_env.outputs.deploy_stage }}
