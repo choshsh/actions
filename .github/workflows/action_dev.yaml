@@ -13,10 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: choshsh/action-config-env@v0.0.4
+      - uses: choshsh/action-config-env@v0.0.5
+        id: deploy_env
         with:
           branch: ${{ github.ref_name }}
           branch-prod: master
 
       - name: test
-        run: echo 1
+        run: echo ${{ steps.deploy_env.outputs.deploy_stage }}'
