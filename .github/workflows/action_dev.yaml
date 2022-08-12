@@ -10,9 +10,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: choshsh/action-config-env@v0.0.2
+      - uses: choshsh/action-config-env@v0.0.3
         with:
-          who-to-greet: choshsh
+          branch: ${{ github.ref_name }}
+          branch-prod: master
 
       - name: test
-        run: env
+        run: echo 1
