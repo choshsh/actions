@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: choshsh/action-config-env@v0.0.3
+      - uses: choshsh/action-config-env@v0.0.4
         with:
           branch: ${{ github.ref_name }}
           branch-prod: master
